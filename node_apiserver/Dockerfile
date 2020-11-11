@@ -1,3 +1,12 @@
-FROM node:15.1.0
+FROM node:12.18.1
+#ENV NODE_ENV=production
 
-WORKDIR "/app"
+WORKDIR /app
+
+COPY ["package.json", "package-lock.json*", "./"]
+
+RUN npm install
+
+COPY . .
+
+CMD [ "node", "server.js" ]
