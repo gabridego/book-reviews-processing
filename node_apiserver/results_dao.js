@@ -15,10 +15,21 @@ exports.getWordCount = function() {
                 resolve(categories);
             }
         });*/
+
         MongoClient.connect(uri, function(err, db) {
-            if (err) throw err;
-            resolve({id: 1});
-            db.close();
+            if (err)
+            	reject({msg: "error in db", details: err});
+            
+            var dbo = db.db(dbname);
+
+            dbo.collection("documents").find({}).toArray(function(err, res) {
+			    if (err)
+			    	reject({msg: "error in db", details: err})
+
+			    resolve(res);
+
+			    db.close();
+			});
         });
     });
 }
