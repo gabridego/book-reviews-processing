@@ -27,7 +27,7 @@ app.get('/api/results/wordcount', (req, res) => {
     .catch((err) => {
         res.status(500).json(err);
     });
-    
+    console.log("ok");
 });
 
 app.get('/api/results/sentiment', (req, res) => {
