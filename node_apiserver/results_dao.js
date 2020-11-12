@@ -1,7 +1,7 @@
 'use strict';
 
 const {wordcount, sentiment, document} = require('./results_classes');
-const client = require('./db');
+const { MongoClient, uri, dbname } = require('./db');
 
 
 exports.getWordCount = function() {
@@ -15,7 +15,10 @@ exports.getWordCount = function() {
                 resolve(categories);
             }
         });*/
-
-        resolve({id: 1});
+        MongoClient.connect(uri, function(err, db) {
+            if (err) throw err;
+            resolve({id: 1});
+            db.close();
+        });
     });
 }
