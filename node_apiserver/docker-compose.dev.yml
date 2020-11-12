@@ -21,6 +21,8 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
+    depends_on: 
+      - "mongo"
     command: npm run debug
 volumes:
   mongodb:
