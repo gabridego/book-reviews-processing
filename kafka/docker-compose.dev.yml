@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:4.2.8
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    healthcheck:
+      test: 'mongo --eval "print(\"waited for connection\")"'
+      interval: 2s
+      timeout: 30s
+      retries: 15
+
+  notes:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+      - 9229:9229
+    environment:
+      - SERVER_PORT=8000
+      - DATABASE_CONNECTIONSTRING=mongodb://mongo:27017/notes
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    depends_on: 
+      mongo:
+        condition: service_healthy
+    command: npm run debug
+    restart: always
+volumes:
+  mongodb:
+  mongodb_config:
