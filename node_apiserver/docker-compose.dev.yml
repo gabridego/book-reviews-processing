@@ -10,7 +10,7 @@ services:
       - mongodb_config:/data/configdb
     healthcheck:
       test: 'mongo --eval "print(\"waited for connection\")"'
-      interval: 2s
+      interval: 0.01s
       timeout: 30s
       retries: 15
 
