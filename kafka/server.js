@@ -45,6 +45,8 @@ app.get('/api/results/sentiment/accuracy', (req, res) => {
 app.post('/api/training/documents', (req, res) => {
     const data = req.body;
 
+    console.log("1 " + data);
+
     if(!data){
         res.status(400).end();
     } else {

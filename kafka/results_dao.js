@@ -4,10 +4,29 @@ const {wordcount, sentiment, document} = require('./results_classes');
 const { MongoClient, uri, dbname } = require('./db');
 
 const { Kafka } = require('kafkajs');
+
 const kafka = new Kafka ({
     clientId: 'nodeserver',
-    brokers: ['kafka1:9092', 'kafka2:9092']
+    brokers: [process.env.KAFKA_HOST + ':9092']
 });
+
+// create kafka topics
+const startup  = async () => {
+    const admin = kafka.admin();
+    await admin.connect();
+    await admin.createTopics({
+        topics: [{
+            topic: 'training',
+            numPartitions: 2,
+            replicationFactor: 1
+        }
+        ],
+});
+    await admin.disconnect();
+};
+
+startup().then(() => console.log('topics created!'));
+
 
 const producer = kafka.producer();
 const consumer = kafka.consumer({ groupId: 'test-group' })
@@ -24,7 +43,7 @@ exports.getWordCount = function() {
             
             var dbo = db.db(dbname);
 
-            dbo.collection("wordcount").find({}).toArray(function(err, res) {
+            dbo.collection("documents").find({}).toArray(function(err, res) {
 			    if (err) {
 			    	reject({msg: "error in db", details: err})
 			    	db.close();
@@ -62,6 +81,7 @@ exports.insertTrainingDocuments = function(document) {
             });
         });
         */
+        
 
         const runProducer = async () => {
             await producer.connect();
@@ -69,15 +89,14 @@ exports.insertTrainingDocuments = function(document) {
             await producer.send({
                 topic: 'training',
                 messages: [
-                    { value: document }
+                    { value: document.text }
                 ]
-            });
-            console.log("Message sent");
+            })
 
-            await producer.disconnect();
+            //await producer.disconnect();
         };
 
-        runProducer();
+        runProducer().then(() => console.log('message sent, awaiting receipt...'));
 
 
         // TEST RECEIPT, INSERT IN DB
@@ -88,10 +107,13 @@ exports.insertTrainingDocuments = function(document) {
             await consumer.subscribe({
                 topic: 'training',
                 fromBeginning: true
-            });
+            })
+            .then(console.log('consumer connected'));
 
             await consumer.run({
                 eachMessage: async ({ topic, partition, message }) => {
+                    console.log('received message ', message);
+
                     MongoClient.connect(uri, function(err, db) {
                         if (err) {
                             reject({msg: "error in db", details: err});
@@ -114,7 +136,7 @@ exports.insertTrainingDocuments = function(document) {
                 }
             });
 
-            await consumer.disconnect();
+            //await consumer.disconnect();
         }
 
         runConsumer();

@@ -1,0 +1,77 @@
+version: '3.8'
+
+networks:
+  kafka-net:
+    driver: bridge
+
+services:
+  mongo:
+    image: mongo:4.2.8
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    networks:
+      - kafka-net
+    healthcheck:
+      test: 'mongo --eval "print(\"waited for connection\")"'
+      interval: 2s
+      timeout: 30s
+      retries: 15
+
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    networks:
+      - kafka-net
+    ports:
+      - 2181:2181
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    image: 'bitnami/kafka:latest'
+    networks:
+      - kafka-net
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    healthcheck:
+      test:
+        ["CMD", "kafka-topics.sh", "--list", "--zookeeper", "zookeeper:2181"]
+      interval: 2s
+      timeout: 30s
+      retries: 15
+
+  notes:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+      - 9229:9229
+    environment:
+      - SERVER_PORT=8000
+      - DATABASE_CONNECTIONSTRING=mongodb://mongo:27017/notes
+      - KAFKA_HOST=kafka
+    networks:
+      - kafka-net
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    depends_on:
+      kafka:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+    command: npm run debug
+    restart: always
+
+volumes:
+  mongodb:
+  mongodb_config:
