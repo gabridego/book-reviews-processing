@@ -12,8 +12,8 @@ services:
     volumes:
       - mongodb:/data/db
       - mongodb_config:/data/configdb
-    networks:
-      - kafka-net
+    #networks:
+    #  - kafka-net
     healthcheck:
       test: 'mongo --eval "print(\"waited for connection\")"'
       interval: 2s

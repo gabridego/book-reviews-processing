@@ -93,13 +93,13 @@ exports.insertTrainingDocuments = function(document) {
                 ]
             })
 
-            //await producer.disconnect();
+            await producer.disconnect();
         };
 
-        runProducer().then(() => console.log('message sent, awaiting receipt...'));
+        runProducer().then(() => console.log('message sent, awaiting receipt...'))
+        .then(() => {
 
-
-        // TEST RECEIPT, INSERT IN DB
+            // TEST RECEIPT, INSERT IN DB
 
         const runConsumer = async () => {
             await consumer.connect();
@@ -108,7 +108,8 @@ exports.insertTrainingDocuments = function(document) {
                 topic: 'training',
                 fromBeginning: true
             })
-            .then(console.log('consumer connected'));
+            .then(() => console.log('consumer connected'))
+            .catch(() => console.log('consumer error'));
 
             await consumer.run({
                 eachMessage: async ({ topic, partition, message }) => {
@@ -136,10 +137,19 @@ exports.insertTrainingDocuments = function(document) {
                 }
             });
 
-            //await consumer.disconnect();
+            await consumer.disconnect()
+            .then(() => console.log('consumer disconnected'));
         }
 
         runConsumer();
+
+
+        });
+
+
+        
+
+        
 
     });
 }
