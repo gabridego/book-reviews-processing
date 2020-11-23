@@ -1,0 +1,67 @@
+version: '3.8'
+
+
+services:
+  mongo_seed:
+    image: mongo:4.2.8
+    links:
+      - mongo
+    volumes:
+      - ./mongo-seed:/mongo-seed
+    command: /mongo-seed/import.sh
+
+  mongo:
+    image: mongo:4.2.8
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    healthcheck:
+      test: 'mongo --eval "print(\"waited for connection\")"'
+      interval: 2s
+      timeout: 30s
+      retries: 15
+
+  apiserver:
+    build:
+      context: ./apiserver
+    ports:
+      - 3001:3001
+    #  - 9229:9229
+    environment:
+      - SERVER_PORT=3001
+      - DATABASE_CONNECTIONSTRING=mongodb://mongo:27017/notes
+    volumes:
+      - ./apiserver:/app
+      - /app/node_modules
+    depends_on: 
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test: 'curl --fail http://apiserver:3001/api/results/wordcount'
+      interval: 2s
+      timeout: 30s
+      retries: 15
+    command: npm run debug
+    restart: always
+
+  webserver:
+    build:
+      context: ./webserver
+    ports:
+      - 3000:3000
+    environment:
+      - SERVER_PORT=3000
+    volumes:
+      - ./webserver:/app
+      - /app/node_modules
+    depends_on: 
+      apiserver:
+        condition: service_healthy
+    command: npm start
+    restart: always
+
+volumes:
+  mongodb:
+  mongodb_config:
