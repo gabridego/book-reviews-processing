@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "kube_bucket" {
-  bucket = "sdtd-kubernetes-state"
+  # bucket = no specified name so that terraform give a unique name to it
   acl = "private"
 
   versioning {
