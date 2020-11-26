@@ -1,3 +1,4 @@
+# How to use terraform to provision a s3 bucket
 1) copy your aws credentials found in "account details" on your aws educate account to ~/.aws/credentials
 
 2) run 'terraform init' in terraform directory, then 'terraform apply' to provision a s3 bucket to store kubernetes cluster state

@@ -14,7 +14,7 @@ provider "aws" {
 
 resource "aws_s3_bucket" "kube_bucket" {
   # bucket = no specified name so that terraform give a unique name to it
-  acl = "private"
+  acl = "bucket-owner-full-control"
 
   versioning {
     enabled = true
