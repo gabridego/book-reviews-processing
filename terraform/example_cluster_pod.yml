@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiserver
+spec:
+  selector:
+    matchLabels:
+      run: apiserver
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: apiserver
+    spec:
+      containers:
+      - name: apiserver
+        image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/apiserver:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
