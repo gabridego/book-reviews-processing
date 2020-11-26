@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "~> 2.70"
     }
   }
@@ -9,7 +9,7 @@ terraform {
 
 provider "aws" {
   profile = "default"
-  region = "us-east-1"
+  region  = "us-east-1"
 }
 
 resource "aws_s3_bucket" "kube_bucket" {
@@ -32,7 +32,7 @@ resource "aws_s3_bucket" "kube_bucket" {
   force_destroy = true
 
   tags = {
-    Name = "Kubernetes State"
+    Name        = "Kubernetes State"
     Environment = "Dev"
   }
 }
