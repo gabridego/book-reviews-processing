@@ -46,6 +46,10 @@ app.use(express.json()); //used in order to parse the the body request as json (
 
 //REST API
 
+app.get('/api/ping', (req, res) => {
+    res.status(200).send('pong');
+});
+
 app.get('/api/results/wordcount', (req, res) => {
     //const result = [{value: 'told', count: 64}, {value: 'house', count: 25},];
     //res.json(result);

@@ -9,6 +9,6 @@
 2) docker-compose
 ## Commands
 1) go to "cd ./system"
-2) run "sudo docker-compose -f docker-compose.yml up --build"
+2) run "sudo docker-compose -f docker-compose.dev.yml up --build"
 3) visit "http://localhost:3000/" to test it
-4) to stop and delete containers press CTRL+C and run "sudo docker-compose -f docker-compose.yml rm"
+4) to stop and delete containers press CTRL+C and run "sudo docker-compose -f docker-compose.dev.yml rm"

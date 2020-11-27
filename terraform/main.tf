@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "kube_bucket" {
-  bucket = "sdtd-kubernetes-state"
+  bucket = "sdtd-privitera"
   acl = "private"
 
   versioning {
