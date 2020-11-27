@@ -1,13 +1,13 @@
 apiVersion: v1
 data:
-  DATABASE_CONNECTIONSTRING: mongodb://mongo:27017/notes
+  DATABASE_CONNECTIONSTRING: mongodb://db:27017/notes
   SERVER_PORT: "3001"
 kind: ConfigMap
 metadata:
   annotations:
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"kind":"ConfigMap","apiVersion":"v1","metadata":{"name":"apiserver-env-file","creationTimestamp":null},"data":{"DATABASE_CONNECTIONSTRING":"mongodb://mongo:27017/notes","SERVER_PORT":"3001"}}
-  creationTimestamp: "2020-11-26T22:15:57Z"
+      {"kind":"ConfigMap","apiVersion":"v1","metadata":{"name":"apiserver-env-file","creationTimestamp":null},"data":{"DATABASE_CONNECTIONSTRING":"mongodb://db:27017/notes","SERVER_PORT":"3001"}}
+  creationTimestamp: "2020-11-27T20:39:35Z"
   managedFields:
   - apiVersion: v1
     fieldsType: FieldsV1
@@ -22,9 +22,9 @@ metadata:
           f:kubectl.kubernetes.io/last-applied-configuration: {}
     manager: kubectl
     operation: Update
-    time: "2020-11-26T22:15:57Z"
+    time: "2020-11-27T20:39:35Z"
   name: apiserver-env-file
   namespace: default
-  resourceVersion: "5772"
+  resourceVersion: "30940"
   selfLink: /api/v1/namespaces/default/configmaps/apiserver-env-file
-  uid: 521000b3-b3a0-41d1-bf88-17051af9dda6
+  uid: 7ad675e3-8886-4f4d-b440-1ca6bf5652bd

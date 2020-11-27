@@ -59,3 +59,5 @@ spec:
           envFrom:
           - configMapRef:
               name: apiserver-env-file
+        - name: mongo-seed
+          image: mrjakblade30/sdtd-mongo-seed
