@@ -7,7 +7,7 @@ services:
     links:
       - mongo
     volumes:
-      - ./mongo-seed:/mongo-seed
+      - ../components/mongo-seed:/mongo-seed
     command: /mongo-seed/import.sh
 
   mongo:
@@ -25,15 +25,14 @@ services:
 
   apiserver:
     build:
-      context: ./apiserver
+      context: ../components/apiserver
     ports:
       - 3001:3001
-    #  - 9229:9229
     environment:
       - SERVER_PORT=3001
       - DATABASE_CONNECTIONSTRING=mongodb://mongo:27017/notes
     volumes:
-      - ./apiserver:/app
+      - ../components/apiserver:/app
       - /app/node_modules
     depends_on: 
       mongo:
@@ -48,13 +47,13 @@ services:
 
   webserver:
     build:
-      context: ./webserver
+      context: ../components/webserver
     ports:
       - 3000:3000
     environment:
       - SERVER_PORT=3000
     volumes:
-      - ./webserver:/app
+      - ../components/webserver:/app
       - /app/node_modules
     depends_on: 
       apiserver:
