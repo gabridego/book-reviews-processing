@@ -1,20 +1,20 @@
 apiVersion: v1
 data:
-  HOST: apiserver
+  DANGEROUSLY_DISABLE_HOST_CHECK: "true"
   SERVER_PORT: "3000"
 kind: ConfigMap
 metadata:
   annotations:
     kubectl.kubernetes.io/last-applied-configuration: |
-      {"kind":"ConfigMap","apiVersion":"v1","metadata":{"name":"webserver-env-file","creationTimestamp":null},"data":{"HOST":"apiserver","SERVER_PORT":"3000"}}
-  creationTimestamp: "2020-11-27T21:51:04Z"
+      {"kind":"ConfigMap","apiVersion":"v1","metadata":{"name":"webserver-env-file","creationTimestamp":null},"data":{"DANGEROUSLY_DISABLE_HOST_CHECK":"true","SERVER_PORT":"3000"}}
+  creationTimestamp: "2020-11-29T15:09:33Z"
   managedFields:
   - apiVersion: v1
     fieldsType: FieldsV1
     fieldsV1:
       f:data:
         .: {}
-        f:HOST: {}
+        f:DANGEROUSLY_DISABLE_HOST_CHECK: {}
         f:SERVER_PORT: {}
       f:metadata:
         f:annotations:
@@ -22,9 +22,9 @@ metadata:
           f:kubectl.kubernetes.io/last-applied-configuration: {}
     manager: kubectl
     operation: Update
-    time: "2020-11-27T21:51:04Z"
+    time: "2020-11-29T15:09:33Z"
   name: webserver-env-file
   namespace: default
-  resourceVersion: "43434"
+  resourceVersion: "10026"
   selfLink: /api/v1/namespaces/default/configmaps/webserver-env-file
-  uid: 4403609e-72d4-4cef-a50c-8b8434c91b1d
+  uid: 276c9e9d-fb11-4cbb-ad97-c1a23ee4fa10
