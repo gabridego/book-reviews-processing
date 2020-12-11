@@ -3,11 +3,17 @@ build:
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
+  variables:
+    MODULE_DIR: $CI_PROJECT_DIR/system
+    WEBSERVER_DIR: $MODULE_DIR/webserver
+    APISERVER_DIR: $MODULE_DIR/apiserver
   script:
-    - echo $CI_PROJECT_DIR
+    - echo $MODULE_DIR
+    - echo "images apiserver in $APISERVER_DIR"
+    - echo "images webserver in $WEBSERVER_DIR"
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR/system/apiserver --dockerfile $CI_PROJECT_DIR/system/apiserver/Dockerfile --destination $CI_REGISTRY_IMAGE/apiserver:$CI_COMMIT_TAG
-    - /kaniko/executor --context $CI_PROJECT_DIR/system/webserver --dockerfile $CI_PROJECT_DIR/system/webserver/Dockerfile --destination $CI_REGISTRY_IMAGE/webserver:$CI_COMMIT_TAG
+    - /kaniko/executor --context $APISERVER_DIR --dockerfile $APISERVER_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE/apiserver:$CI_COMMIT_TAG
+    - /kaniko/executor --context $WEBSERVER_DIR --dockerfile $WEBSERVER_DIR/webserver/Dockerfile --destination $CI_REGISTRY_IMAGE/webserver:$CI_COMMIT_TAG
   only:
-    - pipeline
+    - master
