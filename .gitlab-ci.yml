@@ -5,8 +5,8 @@ build:
     entrypoint: [""]
   variables:
     MODULE_DIR: "${CI_PROJECT_DIR}/system"
-    WEBSERVER_DIR: "${MODULE_DIR}/webserver"
-    APISERVER_DIR: "${MODULE_DIR}/apiserver"
+    WEBSERVER_DIR: "${CI_PROJECT_DIR}/system/webserver"
+    APISERVER_DIR: "${CI_PROJECT_DIR}/system/apiserver"
   script:
     - echo $MODULE_DIR
     - echo $APISERVER_DIR
