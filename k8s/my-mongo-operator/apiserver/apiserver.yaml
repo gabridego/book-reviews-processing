@@ -36,8 +36,8 @@ spec:
           ports:
             - containerPort: 3001
           envFrom:
-          - configMapRef:
-              name: apiserver-env-file
+            - configMapRef:
+                name: apiserver-env-file
           #- secretRef:
           #    name: apiserver-secret-file
           livenessProbe:
@@ -56,13 +56,15 @@ spec:
       initContainers:
         - name: wait-mongo
           image: busybox
-          command: ['sh', '-c', 'until nslookup db; do echo waiting for db; sleep 2; done;']
+          command: ['sh', '-c', 'until nslookup db-svc; do echo waiting for db-svc; sleep 2; done;']
           envFrom:
           - configMapRef:
               name: apiserver-env-file
-        - name: mongo-seed
-          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/mongo-seed:test
+        - name: mongo-operator-seed
+          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/mongo-operator-seed:test
+          env:
+            - name: DB_SERVICE
+              value: db-svc
           imagePullPolicy: Always
-            #image: mrjakblade30/sdtd-mongo-seed
       imagePullSecrets:
         - name: my-secret

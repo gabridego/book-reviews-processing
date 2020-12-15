@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-user-secret
+type: Opaque
+stringData:
+  password: password
+
+---
+apiVersion: mongodb.com/v1
+kind: MongoDB
+metadata:
+  name: db
+spec:
+  members: 3
+  type: ReplicaSet
+  version: "4.2.7"
+  security:
+    authentication:
+      modes: ["SCRAM"]
+  users:
+  - name: my-user
+    db: admin
+    passwordSecretRef:
+      name: db-user-secret
+    roles:
+      - name: clusterAdmin
+        db: admin 
+    scramCredentialsSecretName: db-user-secret
