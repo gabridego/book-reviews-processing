@@ -17,6 +17,19 @@ app.use(morgan('tiny'));
 
 
 
+var kafka = require('kafka-node'),
+
+    client = new kafka.KafkaClient({kafkaHost: 'kafkaa:9092'}),
+    producer = new kafka.Producer(client);
+    
+producer.on('ready', function () {
+
+    console.log("it is ready");
+    
+});
+
+producer.on('error', function (err) {console.log("fck: " +  err);})
+
 
 // default options
 app.use(fileUpload());
@@ -26,7 +39,6 @@ app.post('/api/training/documents/upload', function(req, res) {
         return res.status(400).send('No files were uploaded.');
     }
 
-    
     let sampleFile = req.files.sampleFile; //The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     
     // Use the mv() method to place the file somewhere on your server
@@ -48,6 +60,16 @@ app.use(express.json()); //used in order to parse the the body request as json (
 
 app.get('/api/ping', (req, res) => {
     res.status(200).send('pong');
+});
+
+app.post('/api/test', (req, res) => {
+    payloads = [
+        { topic: 'topic1', messages: 'hello world'},
+    ];
+    producer.send(payloads, function (err, data) {
+        console.log(data);
+    });
+    res.status(200).send('test');
 });
 
 app.get('/api/results/wordcount', (req, res) => {
