@@ -32,7 +32,8 @@ spec:
     spec:
       containers:
         - name: apiserver
-          image: mrjakblade30/sdtd-apiserver
+          #image: mrjakblade30/sdtd-apiserver
+          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/apiserver:test
           ports:
             - containerPort: 3001
           envFrom:

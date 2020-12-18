@@ -9,7 +9,9 @@ exports.getWordCount = function() {
         MongoClient.connect(uri, function(err, db) {
             if (err) {
                 reject({msg: "error in db", details: err});
-                db.close();
+                // db.close(); db could be undefined
+                console.log("could not connect to db");
+                //return;
             }
             
             var dbo = db.db(dbname);
@@ -33,7 +35,9 @@ exports.getSentiment = function() {
         MongoClient.connect(uri, function(err, db) {
             if (err) {
                 reject({msg: "error in db", details: err});
-                db.close();
+                // db.close(); db could be undefined
+                console.log("could not connect to db");
+                //return;
             }
             
             var dbo = db.db(dbname);
@@ -57,7 +61,9 @@ exports.getSentimentAccuracy = function() {
         MongoClient.connect(uri, function(err, db) {
             if (err) {
                 reject({msg: "error in db", details: err});
-                db.close();
+                // db.close(); db could be undefined
+                console.log("could not connect to db");
+                //return;
             }
             
             var dbo = db.db(dbname);

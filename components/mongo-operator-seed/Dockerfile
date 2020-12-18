@@ -1,4 +1,4 @@
-FROM mongo:4.2.8
+FROM mongo:4.2.6
 
 COPY . /mongo-seed
 
