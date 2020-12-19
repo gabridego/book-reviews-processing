@@ -4,32 +4,21 @@ const express = require('express');
 
 const resultsDao = require('./results_dao');
 
+const kafka = require('./kafka');
+
 const morgan = require('morgan'); // logging middleware
 
 const fileUpload = require('express-fileupload');
 
-const PORT = process.env.SERVER_PORT;
+const fs = require('fs');
+
+//const PORT = process.env.SERVER_PORT;
+const PORT = 3001;
 
 const app = express();
 
 // Set-up logging
 app.use(morgan('tiny'));
-
-
-
-var kafka = require('kafka-node'),
-
-    client = new kafka.KafkaClient({kafkaHost: 'kafkaa:9092'}),
-    producer = new kafka.Producer(client);
-    
-producer.on('ready', function () {
-
-    console.log("it is ready");
-    
-});
-
-producer.on('error', function (err) {console.log("fck: " +  err);})
-
 
 // default options
 app.use(fileUpload());
@@ -41,6 +30,8 @@ app.post('/api/training/documents/upload', function(req, res) {
 
     let sampleFile = req.files.sampleFile; //The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     
+    //kafka.sendSpark(sampleFile.data);
+
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv('./files/' + req.files.sampleFile.name, function(err) {
         if (err)
@@ -63,12 +54,9 @@ app.get('/api/ping', (req, res) => {
 });
 
 app.post('/api/test', (req, res) => {
-    payloads = [
-        { topic: 'topic1', messages: 'hello world'},
-    ];
-    producer.send(payloads, function (err, data) {
-        console.log(data);
-    });
+
+    var message = 'hello world1';
+    kafka.sendSpark(message);
     res.status(200).send('test');
 });
 
@@ -114,7 +102,7 @@ app.get('/api/results/sentiment/accuracy', (req, res) => {
 
 app.post('/api/training/documents/text', (req, res) => {
     const data = req.body;
-    console.log(data);
+    kafka.sendSpark(data);
     res.status(201).json({"id" : 1});
 
     /*if(!data){

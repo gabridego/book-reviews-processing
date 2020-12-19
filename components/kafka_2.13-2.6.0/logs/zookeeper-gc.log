@@ -1,0 +1,36 @@
+[2020-12-19T16:20:37.351+0100][gc] Using G1
+[2020-12-19T16:20:37.356+0100][gc,init] Version: 15.0.1+9-18 (release)
+[2020-12-19T16:20:37.356+0100][gc,init] CPUs: 4 total, 4 available
+[2020-12-19T16:20:37.356+0100][gc,init] Memory: 3908M
+[2020-12-19T16:20:37.356+0100][gc,init] Large Page Support: Disabled
+[2020-12-19T16:20:37.356+0100][gc,init] NUMA Support: Disabled
+[2020-12-19T16:20:37.356+0100][gc,init] Compressed Oops: Enabled (32-bit)
+[2020-12-19T16:20:37.356+0100][gc,init] Heap Region Size: 1M
+[2020-12-19T16:20:37.356+0100][gc,init] Heap Min Capacity: 512M
+[2020-12-19T16:20:37.356+0100][gc,init] Heap Initial Capacity: 512M
+[2020-12-19T16:20:37.356+0100][gc,init] Heap Max Capacity: 512M
+[2020-12-19T16:20:37.356+0100][gc,init] Pre-touch: Disabled
+[2020-12-19T16:20:37.356+0100][gc,init] Parallel Workers: 4
+[2020-12-19T16:20:37.356+0100][gc,init] Concurrent Workers: 1
+[2020-12-19T16:20:37.356+0100][gc,init] Concurrent Refinement Workers: 4
+[2020-12-19T16:20:37.356+0100][gc,init] Periodic GC: Disabled
+[2020-12-19T16:20:37.356+0100][gc,cds ] Mark closed archive regions in map: [0x00000000fff00000, 0x00000000fff7bff8]
+[2020-12-19T16:20:37.356+0100][gc,cds ] Mark open archive regions in map: [0x00000000ffe00000, 0x00000000ffe51ff8]
+[2020-12-19T16:20:37.356+0100][gc,metaspace] CDS archive(s) mapped at: [0x0000000800000000-0x0000000800b35000-0x0000000800b35000), size 11751424, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 0.
+[2020-12-19T16:20:37.356+0100][gc,metaspace] Compressed class space mapped at: 0x0000000800b38000-0x0000000840b38000, size: 1073741824
+[2020-12-19T16:20:37.356+0100][gc,metaspace] Narrow klass base: 0x0000000800000000, Narrow klass shift: 3, Narrow klass range: 0x100000000
+[2020-12-19T16:21:50.970+0100][gc,start    ] GC(0) Pause Young (Normal) (G1 Evacuation Pause)
+[2020-12-19T16:21:50.973+0100][gc,task     ] GC(0) Using 4 workers of 4 for evacuation
+[2020-12-19T16:21:50.980+0100][gc,phases   ] GC(0)   Pre Evacuate Collection Set: 0,2ms
+[2020-12-19T16:21:50.980+0100][gc,phases   ] GC(0)   Merge Heap Roots: 0,1ms
+[2020-12-19T16:21:50.980+0100][gc,phases   ] GC(0)   Evacuate Collection Set: 5,9ms
+[2020-12-19T16:21:50.980+0100][gc,phases   ] GC(0)   Post Evacuate Collection Set: 0,8ms
+[2020-12-19T16:21:50.980+0100][gc,phases   ] GC(0)   Other: 2,8ms
+[2020-12-19T16:21:50.980+0100][gc,heap     ] GC(0) Eden regions: 25->0(21)
+[2020-12-19T16:21:50.980+0100][gc,heap     ] GC(0) Survivor regions: 0->4(4)
+[2020-12-19T16:21:50.980+0100][gc,heap     ] GC(0) Old regions: 0->2
+[2020-12-19T16:21:50.980+0100][gc,heap     ] GC(0) Archive regions: 2->2
+[2020-12-19T16:21:50.980+0100][gc,heap     ] GC(0) Humongous regions: 0->0
+[2020-12-19T16:21:50.980+0100][gc,metaspace] GC(0) Metaspace: 8070K(8448K)->8070K(8448K) NonClass: 7193K(7424K)->7193K(7424K) Class: 877K(1024K)->877K(1024K)
+[2020-12-19T16:21:50.980+0100][gc          ] GC(0) Pause Young (Normal) (G1 Evacuation Pause) 25M->6M(512M) 9,887ms
+[2020-12-19T16:21:50.980+0100][gc,cpu      ] GC(0) User=0,01s Sys=0,01s Real=0,01s
