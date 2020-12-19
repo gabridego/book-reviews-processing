@@ -25,10 +25,18 @@ console.log('filename: ' + filename, 'start_counter: ' + start_counter);
             continue;
 
         try {
+
+        console.log(line);
+        const jsonline = JSON.parse(line);
+        const newjsonline = {
+            reviewText: jsonline.reviewText,
+            overall: jsonline.overall
+        }
+
         const res = await fetch(address_api_server, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: line
+            body: JSON.stringify(newjsonline)
             });
 
         console.log(`line: ${counter-1} has been sent correctly`);

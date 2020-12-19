@@ -28,12 +28,12 @@ export default function Management() {
                 <SendingText></SendingText>
             </Paper>
         </Grid>
-        <Grid item xs={4}>
+        {/*<Grid item xs={4}>
             <Paper className={classes.paper}>
                 Send your document in form of file<br/>
                 <SendingFile></SendingFile>
             </Paper>
-        </Grid>
+        </Grid>*/}
       </Grid>
     </div>
   );
