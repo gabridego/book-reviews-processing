@@ -11,7 +11,7 @@ spec:
   ports:
     - protocol: TCP
       targetPort: 3000
-      port: 3000
+      port: 80
 status:
   loadBalancer: {}
 ---
