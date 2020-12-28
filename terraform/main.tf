@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "kube_bucket" {
-  bucket = sdtd-privitera
+  #bucket = sdtd-privitera
   acl = "bucket-owner-full-control"
 
   versioning {

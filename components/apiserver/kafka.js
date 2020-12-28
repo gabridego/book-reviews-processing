@@ -1,6 +1,6 @@
 var kafka = require('kafka-node'),
-//client = new kafka.KafkaClient({kafkaHost: 'kafkaa:9092'}),
-client = new kafka.KafkaClient({kafkaHost: 'localhost:9092'}),
+//client = new kafka.KafkaClient({kafkaHost: 'localhost:9092'}),
+client = new kafka.KafkaClient({kafkaHost: 'kafkaa:9092'}),
 producer = new kafka.Producer(client);
 
 var topicSpark = "quickstart-events";

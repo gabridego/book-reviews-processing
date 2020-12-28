@@ -12,8 +12,7 @@ const fileUpload = require('express-fileupload');
 
 const fs = require('fs');
 
-//const PORT = process.env.SERVER_PORT;
-const PORT = 3001;
+const PORT = process.env.SERVER_PORT;
 
 const app = express();
 
