@@ -57,6 +57,6 @@ spec:
           - configMapRef:
               name: apiserver-env-file
         - name: mongo-seed
-          image: mrjakblade30/sdtd-mongo-seed
+          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/mongo-seed:latest
       imagePullSecrets:
         - name: myregistrykey

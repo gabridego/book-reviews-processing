@@ -60,7 +60,7 @@ async function sendText(review, sentimentExpected) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({review: review, sentimentExpected: sentimentExpected}),
+            body: JSON.stringify({reviewText: review, overall: sentimentExpected}),
         }).then( (response) => {
             
             if(response.ok) {
