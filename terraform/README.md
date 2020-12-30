@@ -16,7 +16,7 @@ NOTE: Add a SSH public key with the flag '--ssh-public-key' (compulsory if a `id
 - cluster name with gossip DNS
 `$ export NAME=name.cluster.k8s.local`
 - SSH public key to connect via SSH to the AWS machines.
-`$ SSH_KEY=/path/to/ssh/public/key
+`$ SSH_KEY=/path/to/ssh/public/key`
 #### Create cluster
 `$ kops create cluster ${NAME} --cloud aws --zones=us-east-1a,us-east-1b,us-east-1c --ssh-public-key $SSH_KEY`
 `$ kops update cluster --name ${NAME} --yes`
@@ -24,6 +24,7 @@ NOTE: Add a SSH public key with the flag '--ssh-public-key' (compulsory if a `id
 `$ kops validate cluster --wait 10m`
 
 ### Secrets
+Necessary to pull docker images from a private registry.
 #### Manually
 `$ kubectl create secret docker-registry regcred --docker-server=gitlab.ensimag.fr:5050 --docker-username=<username_gitlab> --docker-password=<password_gitlab>`
 #### File
