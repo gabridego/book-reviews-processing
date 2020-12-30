@@ -32,7 +32,7 @@ Necessary to pull docker images from a private registry.
 
 ### To destroy the cluster
 1) `$ kops delete cluster  ${NAME} --yes`
-2) destroy the s3 bucket: run `terraform destroy``
+2) destroy the s3 bucket: run `terraform destroy`
 
 ### Scale up/down
 Run `kops edit ig nodes` to access current file-based instance group configuration.
