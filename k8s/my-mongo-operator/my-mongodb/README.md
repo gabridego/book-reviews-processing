@@ -1,6 +1,6 @@
 # Deploy a replicated MongoDB database
-Based on the instructions on the github pages
-https://github.com/mongodb/mongodb-kubernetes-operator/tree/master/docs
+Based on the instructions on the [github pages](https://github.com/mongodb/mongodb-kubernetes-operator/tree/master/docs)
+There are two ways to deploy the replicaSet, the second one being the preferred way
 
 ## Deploy replica set with Kubernetes Community Operator from git repository
 1) Clone git repository
@@ -41,15 +41,14 @@ check installation with
 `kubectl get pods`
 
 3) Apply mongoDB resource definition
-`kubectl apply -f secret.yaml`
 `kubectl apply -f mongodb-crd.yaml`
+The file contains secrets that create users in the database to allow access to the replicaSet.
 
 4) (Optional) After the MongoDB resource is running, the secret is no longer needed. It is advised to remove it for security purposes.
 `kubectl delete secret <db-user-secret>`
-Replace <db-user-secret> with the info from secret.yaml
+Replace <db-user-secret> with the info from mongodb-crd.yaml
 
-
-## Connect to replica set
+# Connect to replica set
 Forward mongoDB service to your localhost port 27018
 `kubectl port-forward service/<mongodb-svc> 27018:27017`
 Connect with mongo client
