@@ -1,10 +1,19 @@
 # Projet SDTD
 
-## Notes
+## Overview
+### User guide
+...
+### Components
+There are 3 main components in our application:
+1) A webserver, because our application is accessible through an internet browser (nodeJS)
+2) An apiserver (nodeJS)
+3) A replicated database (MongoDB, with MongoDB Community Kubernetes Operator)
 
-1) kubectl create configmap apiserver-env-file --from-env-file=./apiserver-env-file.properties --save-config
-2) kubectl get configmap apiserver-env-file -o yaml > ./apiserver-configmap.yaml
+## Manage the application life
+Read [k8s/ files](./k8s) for instructions on how to create, delete and update the kubernetes cluster on which the application is deployed.
 
-3) kubectl create configmap webserver-env-file --from-env-file=./webserver-env-file.properties --save-config
-4) kubectl get configmap webserver-env-file -o yaml > ./webserver-configmap.yaml
-5) name of db service should be mongo
+## Test
+I advise to download and use [k9s](https://k9scli.io/) which makes it easier to visualize the cluster status with its' interface.
+### Disponibility
+Kubernetes makes sure every pod that is down is restarted automatically.
+

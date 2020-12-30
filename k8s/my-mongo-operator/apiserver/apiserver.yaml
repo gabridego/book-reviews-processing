@@ -5,12 +5,15 @@ metadata:
   labels:
     app: apiserver
 spec:
+  type: LoadBalancer
   selector:
     app: apiserver
   ports:
     - protocol: TCP
       targetPort: 3001
       port: 3001
+status:
+  loadBalancer: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -29,13 +32,13 @@ spec:
     spec:
       containers:
         - name: apiserver
-          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/apiserver:latest
-          imagePullPolicy: Always
+          #image: mrjakblade30/sdtd-apiserver
+          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/apiserver:test
           ports:
             - containerPort: 3001
           envFrom:
-          - configMapRef:
-              name: apiserver-env-file
+            - configMapRef:
+                name: apiserver-env-file
           #- secretRef:
           #    name: apiserver-secret-file
           livenessProbe:
@@ -54,17 +57,15 @@ spec:
       initContainers:
         - name: wait-mongo
           image: busybox
-          command: ['sh', '-c', 'until nslookup db; do echo waiting for db; sleep 2; done;']
+          command: ['sh', '-c', 'until nslookup db-svc; do echo waiting for db-svc; sleep 2; done;']
           envFrom:
           - configMapRef:
               name: apiserver-env-file
-        - name: mongo-seed
-          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/mongo-seed:latest
-        - name: wait-kafka
-          image: busybox
-          command: ['sh', '-c', 'until nslookup kafkaa; do echo waiting for kafkaa; sleep 2; done;']
-          envFrom:
-          - configMapRef:
-              name: apiserver-env-file
+        - name: mongo-operator-seed
+          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/mongo-operator-seed:test
+          env:
+            - name: DB_SERVICE
+              value: db-svc
+          imagePullPolicy: Always
       imagePullSecrets:
-        - name: myregistrykey
+        - name: my-secret
