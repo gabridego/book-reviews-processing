@@ -10,7 +10,7 @@ There are 3 main components in our application:
 3) A replicated database (MongoDB, with MongoDB Community Kubernetes Operator)
 
 ## Manage the application life
-Read [k8s/ files](./k8s/README.md) for instructions on how to create, delete and update the kubernetes cluster on which the application is deployed.
+Read [k8s/ files](./k8s) for instructions on how to create, delete and update the kubernetes cluster on which the application is deployed.
 
 ## Test
 I advise to download and use [k9s](https://k9scli.io/) which makes it easier to visualize the cluster status with its' interface.
