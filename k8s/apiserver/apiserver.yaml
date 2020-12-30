@@ -58,5 +58,11 @@ spec:
               name: apiserver-env-file
         - name: mongo-seed
           image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/mongo-seed:latest
+        - name: wait-kafka
+          image: busybox
+          command: ['sh', '-c', 'until nslookup kafkaa; do echo waiting for kafkaa; sleep 2; done;']
+          envFrom:
+          - configMapRef:
+              name: apiserver-env-file
       imagePullSecrets:
         - name: myregistrykey
