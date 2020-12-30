@@ -35,5 +35,6 @@ spec:
           envFrom:
           - configMapRef:
               name: webserver-env-file
+          imagePullPolicy: Always
       imagePullSecrets:
         - name: myregistrykey
