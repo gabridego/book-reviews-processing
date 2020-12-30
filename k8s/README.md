@@ -18,24 +18,24 @@ A secret to access them:
         3) run the command `kubectl get configmap webserver-env-file -o yaml > ./webserver-configmap.yaml`
 
 ## How to run images on AWS
-1) Follow the [README file](../terraform/) inside the terraform folder in order to create a kubernetes cluster inside AWS
+1) Follow the instructions in the [terraform](../terraform/) folder in order to create a kubernetes cluster inside AWS
 2) We need 3 components: the webserver, the apiserver, and the database.
 Run `kubectl apply -f webserver/`
 For the database and apiserver you need to know if you want a replicated database or a standalone:
     - standalone: go to step 3a 
     - replicated: go to step 3b 
+3) Do not follow both points a) and b), but only one among the two.
+    - 3a) Run the following commands:
+        - `kubectl apply -f db/`
+        - `kubectl apply -f apiserver/`
+    - 3b) Follow the instructions in [my-mongo-operator](./my-mongo-operator/)
+4) Check the EXTERNAL-IP of webserver with command `kubectl get services`. Open the EXTERNAL-IP address in a browser NOTE: wait about 5 minutes before attempting to access the web site (I think because the DNS needs time to be updated)
+6) You can stop everything on AWS by following instructions in the [terraform](../terraform/) folder
 
 NOTE: if you need to modify .yaml files, then you probably need to delete and re-apply files on the cluster:
         1) modify the file
         2) `kubectl delete -f .`
         3) `kubectl apply -f .`
-3) Do not follow both points a) and b), but only one among the two.
-    a) Run the following commands:
-        - `kubectl apply -f db/`
-        - `kubectl apply -f apiserver/`
-    b) Follow the instructions in the [README file](./my-mongo-operator/)
-4) Check the EXTERNAL-IP of webserver with command `kubectl get services`. Open the EXTERNAL-IP address in a browser NOTE: wait about 5 minutes before attempting to access the web site (I think because the DNS needs time to be updated)
-6) You can stop everything on AWS by following instructions in the [README file](../terraform/) inside the terraform folder
 
 ## useful kubectl commands
 - kubectl create configmap webserver-env-file --from-env-file=./webserver-env-file.properties --save-config
