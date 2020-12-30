@@ -48,4 +48,5 @@ NOTE: if you need to modify .yaml files, then you probably need to delete and re
 - kubectl describe svc "name of pod shown in 'kubectl get services'"
 - kubectl describe pods "name of pod shown in 'kubectl get pods'"
 - kubectl get logs
+
 NOTE: an alternative would be to use [k9s](https://k9scli.io/)
