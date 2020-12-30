@@ -22,18 +22,18 @@ export default function Management() {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={8}>
+        <Grid item xs={12}>
             <Paper className={classes.paper}>
                 Send your document in form of text<br/>
                 <SendingText></SendingText>
             </Paper>
         </Grid>
-        <Grid item xs={4}>
+        {/*<Grid item xs={4}>
             <Paper className={classes.paper}>
                 Send your document in form of file<br/>
                 <SendingFile></SendingFile>
             </Paper>
-        </Grid>
+        </Grid>*/}
       </Grid>
     </div>
   );

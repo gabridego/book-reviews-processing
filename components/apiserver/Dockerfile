@@ -1,5 +1,5 @@
 FROM node:15.1.0
-#ENV NODE_ENV=production
+ENV NODE_ENV=production
 
 WORKDIR /app
 

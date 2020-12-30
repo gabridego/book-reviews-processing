@@ -4,9 +4,13 @@ const express = require('express');
 
 const resultsDao = require('./results_dao');
 
+const kafka = require('./kafka');
+
 const morgan = require('morgan'); // logging middleware
 
 const fileUpload = require('express-fileupload');
+
+const fs = require('fs');
 
 const PORT = process.env.SERVER_PORT;
 
@@ -14,9 +18,6 @@ const app = express();
 
 // Set-up logging
 app.use(morgan('tiny'));
-
-
-
 
 // default options
 app.use(fileUpload());
@@ -26,9 +27,10 @@ app.post('/api/training/documents/upload', function(req, res) {
         return res.status(400).send('No files were uploaded.');
     }
 
-    
     let sampleFile = req.files.sampleFile; //The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     
+    //kafka.sendSpark(sampleFile.data);
+
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv('./files/' + req.files.sampleFile.name, function(err) {
         if (err)
@@ -48,6 +50,13 @@ app.use(express.json()); //used in order to parse the the body request as json (
 
 app.get('/api/ping', (req, res) => {
     res.status(200).send('pong');
+});
+
+app.post('/api/test', (req, res) => {
+
+    var message = 'hello world1';
+    kafka.sendSpark(message);
+    res.status(200).send('test');
 });
 
 app.get('/api/results/wordcount', (req, res) => {
@@ -92,7 +101,7 @@ app.get('/api/results/sentiment/accuracy', (req, res) => {
 
 app.post('/api/training/documents/text', (req, res) => {
     const data = req.body;
-    console.log(data);
+    kafka.sendSpark(data);
     res.status(201).json({"id" : 1});
 
     /*if(!data){

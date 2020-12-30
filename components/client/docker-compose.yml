@@ -1,0 +1,13 @@
+version: '3.8'
+
+
+services:
+  webserver:
+    build:
+      context: ./
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    command: node client.js amazon_test.json 0 http://localhost:3001/api/training/documents/text
+    restart: always
+    network_mode: host

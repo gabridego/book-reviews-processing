@@ -5,15 +5,12 @@ metadata:
   labels:
     app: webserver
 spec:
-  type: LoadBalancer
   selector:
     app: webserver
   ports:
     - protocol: TCP
-      targetPort: 3000
+      targetPort: 80
       port: 80
-status:
-  loadBalancer: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,10 +29,12 @@ spec:
     spec:
       containers:
         - name: webserver
-          image: mrjakblade30/sdtd-webserver
+          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/webserver:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           envFrom:
           - configMapRef:
               name: webserver-env-file
           imagePullPolicy: Always
+      imagePullSecrets:
+        - name: myregistrykey

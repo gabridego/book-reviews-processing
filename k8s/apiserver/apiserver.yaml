@@ -5,15 +5,12 @@ metadata:
   labels:
     app: apiserver
 spec:
-  type: LoadBalancer
   selector:
     app: apiserver
   ports:
     - protocol: TCP
       targetPort: 3001
       port: 3001
-status:
-  loadBalancer: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,7 +29,8 @@ spec:
     spec:
       containers:
         - name: apiserver
-          image: mrjakblade30/sdtd-apiserver
+          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/apiserver:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3001
           envFrom:
@@ -61,8 +59,12 @@ spec:
           - configMapRef:
               name: apiserver-env-file
         - name: mongo-seed
-          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/mongo-seed:test
-          imagePullPolicy: Always
-            #image: mrjakblade30/sdtd-mongo-seed
+          image: gitlab.ensimag.fr:5050/sdtd1/projet-sdtd/mongo-seed:latest
+        - name: wait-kafka
+          image: busybox
+          command: ['sh', '-c', 'until nslookup kafkaa; do echo waiting for kafkaa; sleep 2; done;']
+          envFrom:
+          - configMapRef:
+              name: apiserver-env-file
       imagePullSecrets:
-        - name: my-secret
+        - name: myregistrykey
