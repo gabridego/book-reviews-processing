@@ -19,8 +19,8 @@ A secret to access them:
 
 ## How to run images on AWS
 1) Follow the instructions in the [terraform](../terraform/) folder in order to create a kubernetes cluster inside AWS
-2) We need 3 components: the webserver, the apiserver, and the database.
-Run `kubectl apply -f webserver/`
+2) We need the following components in this order: kafka, database, spark, apiserver, webserver, api-gateway.
+run `kubectl apply -f ./kafka`
 For the database and apiserver you need to know if you want a replicated database or a standalone:
     - standalone: go to step 3a 
     - replicated: go to step 3b 
@@ -29,6 +29,9 @@ For the database and apiserver you need to know if you want a replicated databas
         - `kubectl apply -f db/`
         - `kubectl apply -f apiserver/`
     - 3b) Follow the instructions in [my-mongo-operator](./my-mongo-operator/)
+run spark (?)
+run `kubectl apply -f ./webserver`
+run `kubectl apply -f ./api-gateway` (this one will be our loadbalancer to contact apiserver or webserver on basis of port)
 4) Check the EXTERNAL-IP of webserver with command `kubectl get services`. Open the EXTERNAL-IP address in a browser NOTE: wait about 5 minutes before attempting to access the web site (I think because the DNS needs time to be updated)
 6) You can stop everything on AWS by following instructions in the [terraform](../terraform/) folder
 
