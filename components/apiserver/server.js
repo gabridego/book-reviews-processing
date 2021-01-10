@@ -8,21 +8,20 @@ const kafka = require('./kafka');
 
 const morgan = require('morgan'); // logging middleware
 
-const fileUpload = require('express-fileupload');
-
-const fs = require('fs');
-
-const PORT = process.env.SERVER_PORT;
+//const PORT = process.env.SERVER_PORT;
+const PORT = 3001;
 
 const app = express();
 
 // Set-up logging
 app.use(morgan('tiny'));
 
+/*
 // default options
+const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
-app.post('/api/training/documents/upload', function(req, res) {
+app.post('/api/documents/upload', function(req, res) {
     if (!req.files || Object.keys(req.files).length === 0) {
         return res.status(400).send('No files were uploaded.');
     }
@@ -40,7 +39,7 @@ app.post('/api/training/documents/upload', function(req, res) {
         res.status(201).send('File uploaded!');
     });
 });
-
+*/
 
 
 
@@ -48,21 +47,11 @@ app.use(express.json()); //used in order to parse the the body request as json (
 
 //REST API
 
-app.get('/api/ping', (req, res) => {
+app.get('/api/ping', (req, res) => { //used for health check
     res.status(200).send('pong');
 });
 
-app.post('/api/test', (req, res) => {
-
-    var message = 'hello world1';
-    kafka.sendSpark(message);
-    res.status(200).send('test');
-});
-
 app.get('/api/results/wordcount', (req, res) => {
-    //const result = [{value: 'told', count: 64}, {value: 'house', count: 25},];
-    //res.json(result);
-
     resultsDao.getWordCount()
     .then((result) => {
         res.json(result);
@@ -73,10 +62,6 @@ app.get('/api/results/wordcount', (req, res) => {
 });
 
 app.get('/api/results/sentiment', (req, res) => {
-
-    //const result = [{id: 1, review: "nice", result: "positive", expected: "positive"}, {id: 2, review: "cool", result: "negative", expected: "positive"}];
-    //res.json(result);
-
     resultsDao.getSentiment()
     .then((result) => {
         res.json(result);
@@ -87,9 +72,6 @@ app.get('/api/results/sentiment', (req, res) => {
 });
 
 app.get('/api/results/sentiment/accuracy', (req, res) => {
-    //const result = [{id: 1, value: 0},{id: 2, value: 50},{id: 3, value: 66.6},{id: 4, value: 50}]
-    //res.json(result);
-
     resultsDao.getSentimentAccuracy()
     .then((result) => {
         res.json(result);
@@ -99,42 +81,11 @@ app.get('/api/results/sentiment/accuracy', (req, res) => {
     });
 });
 
-app.post('/api/training/documents/text', (req, res) => {
+app.post('/api/documents/text', (req, res) => {
     const data = req.body;
     kafka.sendSpark(data);
-    res.status(201).json({"id" : 1});
-
-    /*if(!data){
-        res.status(400).end();
-    
-    } else {
-        resultsDao.insertTrainingDocuments(data)
-            .then((id) => res.status(201).json({"id" : id}))
-            .catch((err) => { res.status(500).json(err) });
-    }*/
-});
-
-app.post('/api/test/documents/text', (req, res) => {
-    const data = req.body;
-    console.log(data);
-    res.status(201).json({"id" : 1});
-
-    /*if(!data){
-        res.status(400).end();
-    } else {
-        resultsDao.insertTestDocuments(data)
-            .then((id) => res.status(201).json({"id" : id}))
-            .catch((err) => { res.status(500).json(err) });
-    }*/
-});
-
-app.delete('/api/results', (req, res) => {
-    res.status(204).end();
-
-    /*rentalDao.deleteResults()
-        .then(() => res.status(204).end())
-        .catch((err) => res.status(500).json(err));*/
+    res.status(201).end();
 });
 
 //start server
-app.listen(PORT, ()=>console.log(`Server running on http://localhost:${PORT}/`));
+app.listen(PORT, ()=>console.log(`Server running on port ${PORT}`));

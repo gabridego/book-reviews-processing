@@ -4,7 +4,7 @@ let fetch = require('node-fetch');
 
 const filename = process.argv[2],
 start_counter = process.argv[3] || 0,
-address_api_server = process.argv[4] || 'http://localhost:3001/api/training/documents/text';
+address_api_server = process.argv[4] || 'http://localhost:3001/api/documents/text';
 
 var counter = 0;
 
@@ -26,7 +26,6 @@ console.log('filename: ' + filename, 'start_counter: ' + start_counter);
 
         try {
 
-        console.log(line);
         const jsonline = JSON.parse(line);
         const newjsonline = {
             reviewText: jsonline.reviewText,

@@ -1,10 +1,7 @@
-import axios from 'axios';
-
 async function getWordCount() {
     const response = await fetch("/api/results/wordcount");
     const jsonResponse = await response.json();
     if(response.ok){
-        //return jsonResponse.map((c) => Category.from(c));
         return jsonResponse;
     } else {
         let err = jsonResponse;
@@ -16,7 +13,6 @@ async function getAccuracy() {
     const response = await fetch("/api/results/sentiment/accuracy");
     const jsonResponse = await response.json();
     if(response.ok){
-        //return jsonResponse.map((c) => Category.from(c));
         return jsonResponse;
     } else {
         let err = jsonResponse;
@@ -28,13 +24,15 @@ async function getSentiment() {
     const response = await fetch("/api/results/sentiment");
     const jsonResponse = await response.json();
     if(response.ok){
-        //return jsonResponse.map((c) => Category.from(c));
         return jsonResponse;
     } else {
         let err = jsonResponse;
         throw err;  // An object with the error coming from the server
     }
 }
+
+/*
+import axios from 'axios';
 
 async function sendFile(file, SetLoaded) {
 
@@ -52,10 +50,11 @@ async function sendFile(file, SetLoaded) {
         }).catch( (err) => {reject({msg: "error in connection", details: err}) }); // connection errors
     });
 }
+*/
 
 async function sendText(review, sentimentExpected) {
     return new Promise((resolve, reject) => {
-        fetch("/api/training/documents/text", {
+        fetch("/api/documents/text", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,5 +74,5 @@ async function sendText(review, sentimentExpected) {
     });
 }
 
-const API = { getWordCount, getAccuracy, getSentiment, sendFile, sendText } ;
+const API = { getWordCount, getAccuracy, getSentiment, sendText } ;
 export default API;
