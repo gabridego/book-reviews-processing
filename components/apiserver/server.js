@@ -8,8 +8,7 @@ const kafka = require('./kafka');
 
 const morgan = require('morgan'); // logging middleware
 
-//const PORT = process.env.SERVER_PORT;
-const PORT = 3001;
+const PORT = process.env.SERVER_PORT;
 
 const app = express();
 
