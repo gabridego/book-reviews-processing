@@ -1,0 +1,15 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/gabriele/Documents/projet-sdtd/spark/sentiment/train/target/scala-2.12/sentimenttrain_2.12-1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	fr[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/gabriele/Documents/projet-sdtd/spark/sentiment/train/target/scala-2.12/classes/fr[0m
+[0m[[0m[0mdebug[0m] [0m[0m	fr/ensimag[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/gabriele/Documents/projet-sdtd/spark/sentiment/train/target/scala-2.12/classes/fr/ensimag[0m
+[0m[[0m[0mdebug[0m] [0m[0m	fr/ensimag/sdtd[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/gabriele/Documents/projet-sdtd/spark/sentiment/train/target/scala-2.12/classes/fr/ensimag/sdtd[0m
+[0m[[0m[0mdebug[0m] [0m[0m	fr/ensimag/sdtd/SentimentTrain.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/gabriele/Documents/projet-sdtd/spark/sentiment/train/target/scala-2.12/classes/fr/ensimag/sdtd/SentimentTrain.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	fr/ensimag/sdtd/SentimentTrain$$typecreator4$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/gabriele/Documents/projet-sdtd/spark/sentiment/train/target/scala-2.12/classes/fr/ensimag/sdtd/SentimentTrain$$typecreator4$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	fr/ensimag/sdtd/SentimentTrain$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/gabriele/Documents/projet-sdtd/spark/sentiment/train/target/scala-2.12/classes/fr/ensimag/sdtd/SentimentTrain$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

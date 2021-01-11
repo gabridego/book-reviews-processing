@@ -1,0 +1,72 @@
+#!/bin/sh
+# File to be ran with spark-submit in your path
+# I used a virtualenv personally
+
+USAGE="
+Unknown option. Try
+-m <master_url>, 
+-n <nb_instances>,
+-r <service_account_role>,
+-s <secret_name> or
+-v <spark_image_version>
+instead"
+
+MASTER_URL=localhost
+SECRET=regcred
+MY_REPO=gitlab.ensimag.fr:5050/sdtd1/projet-sdtd
+NB_INSTANCES=3
+SERVICE_ACCOUNT=spark
+VERSION=v0.1
+INFO=false
+
+while getopts "m:s:n:r:v:i" OPTION; do
+    case $OPTION in
+        m)
+            MASTER_URL=$OPTARG
+            ;;
+        s)
+            SECRET=$OPTARG
+            ;;
+        n)
+            NB_INSTANCES=$OPTARG
+            ;;
+        r)
+            SERVICE_ACCOUNT=$OPTARG
+            ;;
+        v)
+            VERSION=$OPTARG
+            ;;
+        i)
+            INFO=true
+            ;;
+        *)
+            echo $USAGE
+            exit 1
+            ;;
+    esac
+done
+
+MY_IMAGE=$MY_REPO/spark:$VERSION
+
+TO_RUN="spark-submit --master k8s://$MASTER_URL:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=$NB_INSTANCES --conf spark.kubernetes.container.image.pullSecrets=$SECRET --conf spark.kubernetes.authenticate.driver.serviceAccountName=$SERVICE_ACCOUNT --conf spark.kubernetes.container.image=$MY_IMAGE local:///opt/spark/examples/jars/spark-examples_2.12-3.0.1.jar"
+
+if [ "$INFO" = true ]; then
+    echo "Command that would be run:"
+    echo $TO_RUN
+    echo "Remove option i to run command for real"
+    exit 0;
+fi
+
+#spark-submit --master k8s://$MASTER_URL:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=$NB_INSTANCES --conf spark.kubernetes.authenticate.driver.serviceAccountName=$SERVICE_ACCOUNT --conf spark.kubernetes.container.image.pullSecrets=$SECRET --conf spark.kubernetes.container.image=$MY_IMAGE local:///opt/spark/examples/jars/spark-examples_2.12–3.0.1.jar
+#spark-submit --master k8s://$MASTER_URL:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=$NB_INSTANCES --conf spark.kubernetes.container.image.pullSecrets=$SECRET --conf spark.kubernetes.container.image=$MY_IMAGE local:///opt/spark/examples/jars/spark-examples_2.12–3.0.1.jar
+spark-submit --master k8s://$MASTER_URL:443 --deploy-mode cluster --name spark-pi --class org.apache.spark.examples.SparkPi --conf spark.executor.instances=$NB_INSTANCES --conf spark.kubernetes.container.image.pullSecrets=$SECRET --conf spark.kubernetes.authenticate.driver.serviceAccountName=$SERVICE_ACCOUNT --conf spark.kubernetes.container.image=$MY_IMAGE local:///opt/spark/examples/jars/spark-examples_2.12-3.0.1.jar
+
+echo "--- BEGIN ARGS ---"
+echo " $MASTER_URL "
+echo " $NB_INSTANCES instances "
+echo " $MY_IMAGE "
+echo " $SERVICE_ACCOUNT "
+echo "--- END ARGS ---"
+echo $TO_RUN
+
+exit 0;
