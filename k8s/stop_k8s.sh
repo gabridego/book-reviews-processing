@@ -6,7 +6,4 @@ kubectl delete -f ./my-mongo-operator/apiserver
 kubectl delete -f ./kafka
 kubectl delete -f ./db
 kubectl delete -f ./my-mongo-operator/my-mongodb/
-
-
-
-
+kubectl delete -f ./prometheus_grafana

@@ -4,3 +4,4 @@ kubectl apply -f ./kafka
 kubectl apply -f ./apiserver
 kubectl apply -f ./webserver
 kubectl apply -f ./api-gateway
+kubectl apply -f ./prometheus_grafana

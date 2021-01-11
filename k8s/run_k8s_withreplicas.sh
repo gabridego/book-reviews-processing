@@ -6,3 +6,4 @@ kubectl apply -f ./kafka
 kubectl apply -f ./my-mongo-operator/apiserver
 kubectl apply -f ./webserver
 kubectl apply -f ./api-gateway
+kubectl apply -f ./prometheus_grafana
