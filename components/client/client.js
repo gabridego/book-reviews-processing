@@ -34,7 +34,7 @@ console.log('filename: ' + filename, 'start_counter: ' + start_counter);
 
         const res = await fetch(address_api_server, {
             method: 'POST',
-            mode: "cors",
+            //mode: "cors",
             headers: {'Content-Type': 'application/json'},
             //headers: {'Content-Type': 'application/json', 'Connection': 'keep-alive','User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-IT,en;q=0.9,fr-IT;q=0.8,fr;q=0.7,it-IT;q=0.6,it;q=0.5,en-GB;q=0.4,en-US;q=0.3'},
             body: JSON.stringify(newjsonline)
