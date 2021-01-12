@@ -50,7 +50,6 @@ object WordCounter extends Serializable {
 			.withColumn("reviewText", new Column(AssertNotNull(col("reviewText").expr)))
 			.withColumn("overall", new Column(AssertNotNull(col("overall").expr)))
 
-		//lines.printSchema
 
 		// count occurences for each word, after removing punctuation and setting everything to lower case
 		val wordCounts = lines.select("reviewText").as[String].flatMap(_.split("\\s"))

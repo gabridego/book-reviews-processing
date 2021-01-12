@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: platform
+Implementation-Version: 0.17.0-M1
+Specification-Vendor: org.typelevel
+Specification-Title: platform
+Implementation-Vendor-Id: org.typelevel
+Specification-Version: 0.17.0-M1
+Implementation-URL: https://typelevel.org/spire/
+Implementation-Vendor: org.typelevel
+

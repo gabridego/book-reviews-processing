@@ -12,7 +12,7 @@ Unknown option. Try
 instead"
 
 MASTER_URL=localhost
-SECRET=regcred
+SECRET=myregistrykey
 MY_REPO=gitlab.ensimag.fr:5050/sdtd1/projet-sdtd
 NB_INSTANCES=3
 SERVICE_ACCOUNT=spark

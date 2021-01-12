@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: core
+Implementation-Version: 2.0.0-M2
+Specification-Vendor: org.typelevel
+Specification-Title: core
+Implementation-Vendor-Id: org.typelevel
+Specification-Version: 2.0.0-M2
+Implementation-URL: http://typelevel.org/algebra
+Implementation-Vendor: org.typelevel
+
