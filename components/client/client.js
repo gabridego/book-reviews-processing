@@ -4,7 +4,7 @@ let fetch = require('node-fetch');
 
 const filename = process.argv[2],
 start_counter = process.argv[3] || 0,
-address_api_server = process.argv[4] || 'http://localhost:3001/api/documents/text';
+address_api_server = (process.argv[4] && (process.argv[4][process.argv[4].length-1] == "/" ? process.argv[4] + 'api/documents/text' : process.argv[4] + '/api/documents/text')) || 'http://localhost:3001/api/documents/text';
 
 var counter = 0;
 
@@ -34,10 +34,13 @@ console.log('filename: ' + filename, 'start_counter: ' + start_counter);
 
         const res = await fetch(address_api_server, {
             method: 'POST',
+            mode: "cors",
             headers: {'Content-Type': 'application/json'},
+            //headers: {'Content-Type': 'application/json', 'Connection': 'keep-alive','User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-IT,en;q=0.9,fr-IT;q=0.8,fr;q=0.7,it-IT;q=0.6,it;q=0.5,en-GB;q=0.4,en-US;q=0.3'},
             body: JSON.stringify(newjsonline)
             });
-
+        
+        console.log(res);
         console.log(`line: ${counter-1} has been sent correctly`);
         }catch(error) {
             console.log(`error line: ${counter-1}, error: ${error}`);
