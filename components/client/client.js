@@ -40,7 +40,6 @@ console.log('filename: ' + filename, 'start_counter: ' + start_counter);
             body: JSON.stringify(newjsonline)
             });
         
-        console.log(res);
         console.log(`line: ${counter-1} has been sent correctly`);
         }catch(error) {
             console.log(`error line: ${counter-1}, error: ${error}`);
