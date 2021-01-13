@@ -81,7 +81,8 @@ app.get('/api/results/sentiment/accuracy', (req, res) => {
 });
 
 app.post('/api/documents/text', (req, res) => {
-    const data = req.body;
+    const data = JSON.stringify(req.body);
+    console.log(data);
     kafka.sendSpark(data);
     res.status(201).end();
 });

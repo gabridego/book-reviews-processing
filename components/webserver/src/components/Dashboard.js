@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const updateEvery = 10000; //milliseconds
+  const updateEvery = 2000; //milliseconds
   const [updating, setUpdating] = useState(false);
 
 

@@ -11,7 +11,7 @@ import AuthNotificationContext from '../context/GlobalContext';
 import { DataGrid } from '@material-ui/data-grid';
 
 const columns = [
-  { field: '_id', headerName: 'ID', type: 'number', flex: 1},
+  //{ field: '_id', headerName: 'ID', type: 'number', flex: 1},
   { field: 'review', headerName: 'Review', flex: 1 },
   { field: 'result', headerName: 'Result', flex: 1 },
   { field: 'expected', headerName: 'Expected', flex: 1 }
