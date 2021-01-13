@@ -7,6 +7,7 @@ COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
 
-COPY . .
+COPY client.js .
+COPY files/test.json ./files/
 
-CMD [ "node", "client.js" ]
+CMD [ "node", "client.js", "test.json", "0", "http://apiserver:3001" ]
