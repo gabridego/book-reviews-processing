@@ -79,7 +79,7 @@ object WordCounter extends Serializable {
 
 	            		// if _id is not important, use updateOne instead (just replacing ReplaceOptions with UpdateOptions)
 	            		for (wc <- wordCounts)
-	            			collection.replaceOne(new Document("_id", wc.word), new Document().append("_id", wc.word).append("value", wc.count), new ReplaceOptions().upsert(true))
+	            			collection.replaceOne(new Document("value", wc.word), new Document().append("value", wc.word).append("count", wc.count), new ReplaceOptions().upsert(true))
 
 	              		//collection.insertMany(wordCounts.map(wc => { new Document().append("_id", wc.word).append("value", wc.count)}).asJava)
 	            	})

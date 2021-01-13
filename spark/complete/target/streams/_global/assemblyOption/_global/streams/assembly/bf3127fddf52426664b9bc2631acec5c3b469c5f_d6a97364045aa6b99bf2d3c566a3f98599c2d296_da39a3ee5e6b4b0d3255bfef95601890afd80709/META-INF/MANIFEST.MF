@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Built-By: default
+Build-Jdk: 11
+Bnd-LastModified: 1545922062027
+Bundle-Description: istack common utility code
+Bundle-DocURL: https://www.eclipse.org
+Bundle-License: http://www.eclipse.org/org/documents/edl-v10.php
+Bundle-ManifestVersion: 2
+Bundle-Name: istack common utility code runtime
+Bundle-SymbolicName: com.sun.istack.commons-runtime
+Bundle-Vendor: Eclipse Foundation
+Bundle-Version: 3.0.8
+Export-Package: com.sun.istack.logging;version="3.0.8",com.sun.istack;us
+ es:="javax.activation,javax.xml.stream,org.xml.sax,org.xml.sax.helpers"
+ ;version="3.0.8",com.sun.istack.localization;version="3.0.8"
+Implementation-Build-Id: 3.0.8-5384038, 2018-12-27T14:45:41+0000
+Implementation-Vendor: Oracle Corporation
+Implementation-Vendor-Id: com.sun.istack
+Import-Package: javax.activation;version="[1.2,2)",javax.xml.namespace,j
+ avax.xml.stream,org.xml.sax,org.xml.sax.helpers
+Tool: Bnd-3.5.0.201709291849
+
