@@ -32,4 +32,4 @@ kubectl create clusterrolebinding spark-role --clusterrole=edit --serviceaccount
 #	--conf spark.kubernetes.driverEnv.MODEL_DIR=/opt/spark/model \
 #	--conf spark.driver.extraJavaOptions=-Divy.cache.dir=/tmp \
 #	--conf spark.driver.extraJavaOptions=-Divy.home=/tmp \
-#	local:///opt/spark/target/scala-2.12/SentimentTest-assembly-1.0.jar
+#	local:///opt/spark/target/scala-2.12/SparkSDTD-assembly-1.0.jar
