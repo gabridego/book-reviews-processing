@@ -9,7 +9,7 @@ Create a Kafka topic named `quickstart-events` following the instructions [here]
 
 Locally submit the job (must have spark installed):
 
-`$SPARK_HOME/bin/spark-submit --class fr.ensimag.sdtd.WordCounter --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.1,org.mongodb.spark:mongo-spark-connector_2.12:3.0.0 $PATH_TO_PROJECT/spark/final/target/scala-2.12/SparkSDTD-assembly-1.0.jar`
+`$SPARK_HOME/bin/spark-submit --class fr.ensimag.sdtd.SparkSDTD --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.1,org.mongodb.spark:mongo-spark-connector_2.12:3.0.0 $PATH_TO_PROJECT/spark/final/target/scala-2.12/SparkSDTD-assembly-1.0.jar`
 
 Start writing reviews in the Kafka producer terminal, with the format `{"reviewText": "<text>", "overall": 2.0}`.
 
