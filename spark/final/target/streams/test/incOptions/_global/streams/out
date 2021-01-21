@@ -1,6 +1,42 @@
 [0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/gabriele/Documents/projet-sdtd/spark/final/target/scala-2.12/test-classes.bak[0m
 [0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator22$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$WordCount.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$Prediction.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator18$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator34$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator30$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$Accuracy.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$Accuracy$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$Prediction$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$WordCount$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator13$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator26$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator14$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator22$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$WordCount.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$Prediction.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator18$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator34$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator30$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$Accuracy.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$Accuracy$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$Prediction$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$WordCount$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator13$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$anon$3.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator26$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator14$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD.class[0m
 [0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$$typecreator22$1.class[0m
 [0m[[0m[0mdebug[0m] [0m[0m	SparkSDTD$WordCount.class[0m

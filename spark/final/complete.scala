@@ -107,6 +107,7 @@ object SparkSDTD {
     // send wordcounts to mongo, in the format {"_id": "word", "value": NumberLong(1)}
     val queryWc = wordCounts.writeStream
       .outputMode("update")
+      .queryName("wordcount")
       .foreach(new ForeachWriter[WordCount] {
 
       //val writeConfig1: WriteConfig = WriteConfig(Map("uri" -> "mongodb://my-user:userPassword@db-svc.default.svc.cluster.local:27017/sdtd.wordcounts/?replicaSet=db"))
@@ -144,6 +145,7 @@ object SparkSDTD {
     // store predictions in db
     val queryPred = mappedResults.as[Prediction].writeStream
       .outputMode("append")
+      .queryName("sentiment")
       .foreach(new ForeachWriter[Prediction] {
         //val writeConfig: WriteConfig = WriteConfig(Map("uri" -> "mongodb://my-user:userPassword@db-svc.default.svc.cluster.local:27017/sdtd.sentiment/?replicaSet=db"))
         val writeConfig: WriteConfig = WriteConfig(Map("uri" -> sentimentMongoAddress))
@@ -187,7 +189,7 @@ object SparkSDTD {
 
     // store couple (number of reviews, accuracy) in db
     val queryAcc = accResults.as[Accuracy].writeStream
-      .outputMode("complete").foreach(new ForeachWriter[Accuracy] {
+      .outputMode("complete").queryName("accuracy").foreach(new ForeachWriter[Accuracy] {
 
         //val writeConfig2: WriteConfig = WriteConfig(Map("uri" -> "mongodb://my-user:userPassword@db-svc.default.svc.cluster.local:27017/sdtd.accuracy/?replicaSet=db"))
         val writeConfig2: WriteConfig = WriteConfig(Map("uri" -> accuracyMongoAddress))
