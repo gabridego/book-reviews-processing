@@ -1,3 +1,4 @@
+START_TIME=$( date +%s )
 cd terraform
 terraform init
 terraform apply -auto-approve
@@ -12,3 +13,5 @@ kops edit ig nodes
 kops update cluster --name sdtd.k8s.local --yes
 
 kops validate cluster --wait 10m
+
+echo Elapsed time: $(( $(date +%s)-START_TIME ))
