@@ -53,3 +53,9 @@ NOTE: if you need to modify .yaml files, then you probably need to delete and re
 - kubectl get logs
 
 NOTE: an alternative would be to use [k9s](https://k9scli.io/)
+
+## Access mongo
+
+`kubectl port-forward service/db-svc 27017:27017`
+
+In another shell, `mongo mongodb://my-user:userPassword@localhost:27017` (mongo must be installed on the machine). Changes to sdtddb are reflected on the dashboard.
