@@ -11,6 +11,7 @@ address_api_server = (process.argv[4] && (process.argv[4][process.argv[4].length
 console.log('filename: ' + filename, 'start_counter: ' + start_counter, 'address_api_server: ' + address_api_server);
 
 (async function processLineByLine() {
+    let global_counter = 0;
     let counter = 0;
     let current_loop = 0;
 
@@ -31,23 +32,25 @@ console.log('filename: ' + filename, 'start_counter: ' + start_counter, 'address
 
             try {
 
-            const jsonline = JSON.parse(line);
-            const newjsonline = {
-                reviewText: jsonline.reviewText,
-                overall: jsonline.overall
-            }
+                const jsonline = JSON.parse(line);
+                const newjsonline = {
+                    reviewText: jsonline.reviewText,
+                    overall: jsonline.overall
+                }
 
-            const res = await fetch(address_api_server, {
-                method: 'POST',
-                //mode: "cors",
-                headers: {'Content-Type': 'application/json'},
-                //headers: {'Content-Type': 'application/json', 'Connection': 'keep-alive','User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-IT,en;q=0.9,fr-IT;q=0.8,fr;q=0.7,it-IT;q=0.6,it;q=0.5,en-GB;q=0.4,en-US;q=0.3'},
-                body: JSON.stringify(newjsonline)
-                });
-            
-            console.log(`line: ${counter-1} has been sent correctly`);
+                const res = await fetch(address_api_server, {
+                    method: 'POST',
+                    //mode: "cors",
+                    headers: {'Content-Type': 'application/json'},
+                    //headers: {'Content-Type': 'application/json', 'Connection': 'keep-alive','User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Accept-Language': 'en-IT,en;q=0.9,fr-IT;q=0.8,fr;q=0.7,it-IT;q=0.6,it;q=0.5,en-GB;q=0.4,en-US;q=0.3'},
+                    body: JSON.stringify(newjsonline)
+                    });
+
+                global_counter++;
+
+                console.log(`line: ${counter-1} has been sent correctly. Total request: ${global_counter}`);
             }catch(error) {
-                console.log(`error line: ${counter-1}, error: ${error}`);
+                console.log(`error line: ${counter-1}, error: ${error}. Total request: ${global_counter}`);
             }
         }
 
