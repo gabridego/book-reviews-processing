@@ -30,3 +30,6 @@ There are different folders and files organized in this way:
 12) when finished run `./stop_k8s.sh`
 13) go to root folder again
 14) run `./destroy_cluster_aws.sh`
+
+## Notes
+The project was initially hosted on *GitLab*. Docker images are therefore hosted in a private container registry, but can be replicated with the provided docker files (`docker build`). For buildin spark images, follow the official [guide](https://spark.apache.org/docs/latest/running-on-kubernetes.html#docker-images).

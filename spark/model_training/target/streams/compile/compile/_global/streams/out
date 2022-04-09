@@ -1,5 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/home/gabriele/Documents/projet-sdtd/spark/sentiment/sentiment.scala:45:83: not enough arguments for method setOutputCol: (value: String)org.apache.spark.ml.feature.StopWordsRemover.[0m
-[0m[[0m[31merror[0m] [0m[0mUnspecified value parameter value.[0m
-[0m[[0m[31merror[0m] [0m[0m            val remover = new StopWordsRemover().setInputCol("words").setOutputCol()[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                  ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
